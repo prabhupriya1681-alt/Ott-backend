@@ -1,0 +1,10 @@
+import express from "express";
+import { protect, isAdmin } from "../middleware/auth.js";
+import { createMovie, getMovies, getMovie, updateMovie, deleteMovie } from "../controllers/movieController.js";
+const router = express.Router();
+router.get("/", getMovies);
+router.get("/:id", getMovie);
+router.post("/", protect, isAdmin, createMovie);
+router.put("/:id", protect, isAdmin, updateMovie);
+router.delete("/:id", protect, isAdmin, deleteMovie);
+export default router;
